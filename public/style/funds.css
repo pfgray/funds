@@ -1,0 +1,107 @@
+@viewport{
+	width:device-width;
+}
+
+@font-face{
+    font-family: Albas;
+    src: url(albas.ttf);
+}
+
+body{
+    /*background-image:url('../images/bg-noise-tile.png');*/
+}
+.title{
+    font-size: 2em;
+    margin-top: 50px;
+}
+span.titleLink{
+    font-family:Albas;
+    color:#8AC321;
+    font-size:1.5em;
+}
+span.highlight {
+    color:#8AC321;
+}
+div.content{
+    border:1px solid gray;
+    border-radius: 5px;
+    padding:10px;
+    background-color:#FFFFFF;
+}
+
+img.navbarIcon{
+    height:80%;
+}
+.name{
+    font-family: Albas;
+}
+img.sign{
+    height:100%;
+}
+.signSpan{
+    display: block;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    font-size: 0.875em;
+    height: 2.3125em;
+    line-height: 2.3125em;
+}
+#text{
+    height:100%;
+}
+#submit{
+    height:100%;
+}
+div.textRow{
+    height:50px;
+}
+
+.negative{
+    color:#ED4337;
+}
+.positive{
+    color:#8AC321;
+}
+.amount{
+    font-weight: bold;
+}
+h3 {
+    text-align:right;
+}
+span.username.highlight {
+    font-weight: bold;
+}
+span.username{
+    margin-left:5px;
+}
+
+input {
+    -webkit-appearance: none;
+    border-radius: 0;       
+}
+
+
+img.navicon{
+    height:100%;
+}
+
+div.user_info{
+    float:right;
+    text-align: right;
+    padding-right: 10px;
+}
+
+div.top_bar{
+    height:50px;
+    background-color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left:10px;
+    margin-bottom:20px;
+}
+

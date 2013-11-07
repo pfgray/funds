@@ -1,0 +1,26 @@
+<html>
+<meta name="viewport" content="width=device-width" />
+<head>
+    <title>Funds</title>
+    <link rel="stylesheet" href="foundation/css/foundation.min.css"/>
+    <link rel="stylesheet" href="/style/funds.css"/>
+    <link rel="stylesheet" href="/style/accounts.css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script src="/script/setupAccount.js"></script>
+</head>
+<body>
+    <% include navbar %>
+    <form id="accountForm" method="POST" action="/accounts">
+        <input id="account_name" name="name" type="hidden" value="<%= account.name %>"/>
+        <input id="account_type" name="type" type="hidden" />
+    </form>
+    <div class="row">
+        <h4>Choose the type of account for '<%= account.name %>':</h4>
+        <div class="small-12 large-12 columns">
+            <a class="account" href="#"><img class="account_type_image" src="/images/credit.png"/><span class="text">checking</span></a>
+            <a class="account" href="#"><img class="account_type_image" src="/images/savings.png"/><span class="text">savings</span></a>
+        </div>
+    </div>
+    <% if(locals.errors) { %><%= JSON.stringify(errors) %><% } %>
+</body>
+</html>

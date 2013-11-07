@@ -1,0 +1,66 @@
+<html>
+<meta name="viewport" content="width=device-width" />
+<head profile="http://www.w3.org/2005/10/profile">
+<link rel="icon" type="image/png" href="/images/dollar.png">
+    <title>Funds</title>
+    <link rel="stylesheet" href="/foundation/css/foundation.min.css"/>
+    <link rel="stylesheet" href="/style/funds.css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/script/funds.js"></script>
+</head>
+
+<body>
+    <% include navbar %>
+    <div class="row">
+        <div class="large-10 large-offset-1 small-12 columns">
+            <div class="large-12 small-12 columns">
+                <h3>Add Transaction:</h3>
+            </div>
+            <form method="POST" action="/accounts/<%= account %>/transactions">
+                <div class="row collapse">
+                    <div class="small-12 columns">
+                        <label for="amount">amount:</label>
+                    </div>
+                    <div class="large-1 small-2 columns">
+                        <span class="signSpan">
+                            <!--<img class="sign" alt="-" src="/images/minus.svg"/>-->
+                            <a onclick="return false;" id="sign" class="button expand alert">-</a>
+                            <input id="sign_check" style="display:none;" type="checkbox" checked="checked" name="negative" value="true">
+                        </span>
+                    </div>
+                    <div class="large-1 small-1 columns">
+                        <span class="prefix">$</span>
+                    </div>
+                    <div class="large-10 small-9 columns">
+                        <input type="text" name="amount" placeholder="amount here"/>
+                    </div>
+                
+                </div>
+                <div class="row collapse">
+                    <div class="small-12 columns">
+                        <label class="" for="tags">tags:</label>
+                    </div>
+                    <div class="small-12 columns">
+                        <input type="text" name="tags" placeholder="tags here"/>
+                    </div>
+                </div>
+
+                <div class="row collapse">
+                    <div class="small-12 columns">
+                        <label class="" for="store">store:</label>
+                    </div>
+                    <div class="small-12 columns">
+                        <input type="text" name="store" placeholder="store here"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="large-6 small-12 columns">
+                        <button class="button expand" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

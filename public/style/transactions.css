@@ -1,0 +1,35 @@
+
+div.transaction{
+    padding:10 5 10 5px;
+    border-top:1px solid gray;
+    overflow:hidden;
+    zoom:1;
+
+
+
+}
+div.transaction:hover{
+    background-color:#EEEEEE;
+}
+div.transaction:last-child{
+    border-bottom:1px solid gray;
+    margin-bottom:200px;
+}
+
+div.tags{
+    float:right;
+}
+
+div.tag{
+    background-color:#dee569;
+    display:inline-block;
+    padding:3px;
+    border:1px solid black;
+    border-radius:5px;
+    box-shadow: 1px 1px 1px #888888; 
+
+}
+div.tag:hover{
+    cursor:pointer;
+    background-color:#FFFFD5;
+}

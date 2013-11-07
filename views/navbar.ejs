@@ -1,0 +1,31 @@
+<div class="top_bar">
+	<% if(locals.user){ %>
+		<div class="user_info">
+			<a href="#">
+				<img class="navicon" src="<%= user.avatar %>"/><span class="highlight username"><%= user.username %></span>
+			</a>
+		</div>
+	<% } %>
+	<!--<div class="name show-for-small"><a href="#" ><span class="titleLink">F</span></a></div>-->
+	<div class="name"><a href="#" ><span class="titleLink">Funds</span></a></div>
+</div>
+
+<!--
+<nav class="top-bar">
+	<ul class="title-area">
+		<li class="name hide-for-medium-up">
+			<h1><a href="#" ><span class="titleLink">F</span></a></h1>
+		</li>
+		<li class="name hide-forsmall">
+			<h1><a href="#" ><span class="titleLink">Funds</span></a></h1>
+		</li>
+		<% if(locals.user){ %>
+			<div class="user_info">
+				<a href="#">
+					<img class="navicon" src="<%= user.avatar %>"/><span class="highlight"><%= user.username %></span>
+				</a>
+			</div>
+		<% } %>
+	</ul>
+</nav>
+-->
