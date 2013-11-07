@@ -8,6 +8,27 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
     <!--<script src="//code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>-->
     <script src="/script/funds.js"></script>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      var tag_list = new Array(['Tag', 'amount']);
+      tag_list.push();
+      <% tags.forEach(function(tag) { %>
+      tag_list.push(['<%= tag.name %>', parseFloat((<%= tag.value %>).toFixed(2))]);
+      <% }); %>
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(tag_list);
+
+        var options = {
+          title: 'Month of '+'<%= moment().format("MMM")%>'+':'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body>
     <% include navbar %>
@@ -30,7 +51,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="large-12 small-12 columns">
+        <div class="large-8 small-12 columns">
         <% transactions.forEach(function(trans) { %>
         <div class="transaction">
             <div class="tags">
@@ -52,6 +73,10 @@
             </div>
         </div>
         <% }); %>
+        </div>
+        <div class="large-4 small-12 columns">
+            <div id="piechart">
+            </div>
         </div>
     </div>
 </body>

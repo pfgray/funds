@@ -91,7 +91,32 @@
                     callback(err);
                 }
             });
-       }
+       },
+       getTransactionPercentsForAcountForDate : function(account_id, date, callback){
 
+            //http://192.168.1.150:5984/funds/_design/money/_view/tag_percentage?startkey=["104011d9bac9fad553650b8eab0001a2",2013,9]&endkey=["104011d9bac9fad553650b8eab0001a2",2013,9,{}]&group=true
+            
+            console.log("getting transactions for date: " + date.getTime());
+            var startkey = [account_id, date.getFullYear(), date.getMonth()];
+            var endkey = [account_id, date.getFullYear(), date.getMonth(), {}];
+
+            db.view('money', 'tag_percentage', {startkey:startkey,endkey:endkey,group:true}, function(err, body) {
+                if (!err) {
+                    var tags = new Array();
+                    for(var i=0; i<body.rows.length; i++){
+                        var tag = {
+                            name:body.rows[i].key[3],
+                            value:body.rows[i].value
+                        }
+                        console.log('pushing tag: ' + JSON.stringify(tag));
+                        tags.push(tag);
+                    }
+                    callback(null, tags);
+                }else{
+                    console.log(JSON.stringify(err));
+                    callback(err);
+                }
+            });
+       }
    };
 }();

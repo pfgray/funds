@@ -9,12 +9,15 @@ module.exports = function() {
 		transactionDao.getTransactionsForAcountForDate(req.params.account,date, function(err, rows){
 			model.transactions = rows;
 			transactionDao.getTotalForMonth(req.params.account, function(total){
-				model.total = parseInt(total*100)/100;
-				model.username = req.session.username;
-				model.account = req.params.account;
-				slate.render('transactions.ejs', model, function(data){
-		            res.send(data);
-		        });
+				transactionDao.getTransactionPercentsForAcountForDate(req.params.account, new Date(), function(err, tags){
+					model.total = parseInt(total*100)/100;
+					model.username = req.session.username;
+					model.account = req.params.account;
+					model.tags = tags;
+					slate.render('transactions.ejs', model, function(data){
+			            res.send(data);
+			        });
+			    });
 			});
 		});
 	};
