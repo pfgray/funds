@@ -12,12 +12,12 @@
 		    console.log('about to authenticate user: ' + username);
 		    userDao.getUser(username, function(err, user){
 				if (err != null || user == null){
-				    callback(false);
+				    callback(error, "username not found");
 				}else{
 				    if(JSON.stringify(SHA256(salt + username + password)) === JSON.stringify(user.password)){
-						callback(true, user);
+						callback(false, user);
 				    }else{
-						callback(false);
+						callback(true);
 				    }
 				}
 		    });

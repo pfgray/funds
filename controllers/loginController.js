@@ -31,6 +31,29 @@ module.exports = function() {
 		}
 	};
 
+	var loginValidator = {
+		validate:function(validatedUser, callback){
+			var errors = {};
+
+			//validate that the username exists
+			userDao.getUser(validatedUser.username, function(err, user){
+				if(err || user == null){
+					errors.username = {message:"sorry, username was not found."};
+					callback(errors);
+				}else{
+					userService.authenticatePassword(user.username, validatedUser.password, function(passwordError, user){
+						if(!passwordError){
+							callback(false, user);
+						}else{
+							errors.password = {message:"sorry, password is incorrect."};
+							callback(errors);
+						}
+					});
+				}
+			});
+		}
+	};
+
 	app.loginForm = function(req, res){
 		slate.render('login.ejs', {error:false}, function(data){
 			res.send(data);
@@ -38,14 +61,18 @@ module.exports = function() {
 	};
 
 	app.login = function(req, res) {
-		userService.authenticatePassword(req.body.username, req.body.password, function(successful, user){
-			if(successful){
-				console.log('was successful!');
+		var loginUser = {
+			username:req.body.username, 
+			password:req.body.password
+		};
+		loginValidator.validate(loginUser, function(error, user){
+			if(!error){
+				console.log("authenticated correctly!" + JSON.stringify(user));
 				req.session.user = user;
 				res.redirect(303, '/accounts');
 			}else{
-				console.log('was not successful!');
-				slate.render('login.ejs', {error:true}, function(data){
+				console.log("error: " + error);
+				slate.render('login.ejs', {errors:error,request:req.body}, function(data){
 					res.send(data);
 				});
 			}

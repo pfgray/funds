@@ -9,14 +9,13 @@
 </head>
 <body>
   <% include navbar %>
-  <% if(error == true){ %>
-    !error
-  <% } %>
   <div class="row">
     <div class="large-4 large-offset-4 columns">
       <form method="POST" action="/login">
-        <input type="text" placeholder="username" name="username"/>
-        <input type="password" placeholder="password" name="password"/>
+        <% if (locals.errors && errors.username) { %><label for="username" class="error"><%= errors.username.message %></label><% } %>
+        <input class="<% if (locals.errors && errors.username) { %>error<% } %>" type="text" placeholder="username" name="username" value="<% if (locals.request) { %><%= slate.nullSafe(request.username) %><% } %>"/>
+        <% if (locals.errors && errors.password) { %><label for="password" class="error"><%= errors.password.message %></label><% } %>
+        <input class="<% if (locals.errors && errors.password) { %>error<% } %>" type="password" placeholder="password" name="password" value="<% if (locals.request) { %><%= slate.nullSafe(request.password) %><% } %>"/>
         <input class="button" type="submit" value="submit"/>
       </form>
     </div>
