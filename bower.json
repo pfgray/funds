@@ -1,0 +1,24 @@
+{
+  "name": "funds",
+  "version": "1.0.0",
+  "homepage": "http://funds.paulgray.net",
+  "authors": [
+    "Paul Gray <@PaulGrizzay>"
+  ],
+  "description": "A mobile-friendly fund-tracking web application.",
+  "main": "app.js",
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "5.1.1",
+    "jquery": "2.1.0"
+  }
+}
