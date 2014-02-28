@@ -1,0 +1,21 @@
+<html>
+<meta name="viewport" content="width=device-width" />
+<head>
+    <title>Funds</title>
+    <link rel="stylesheet" href="/lib/foundation/css/foundation.min.css"/>
+    <link rel="stylesheet" href="/style/funds.css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+</head>
+<body>
+    <% include ../navbar %>
+    <ul class="user_list">
+        <% users.forEach(function(user) { %>
+            <li class="user">
+                <span class="username"><%= user.username %></span>
+                <span class="email"><%= user.email %></span>
+                <span class="password"><%= user.password %></span>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

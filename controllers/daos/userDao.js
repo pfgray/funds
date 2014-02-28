@@ -42,6 +42,25 @@
                     callback(rows);
                 }
             });  
-        }
+        },
+        getAll : function(callback){
+            db.view('money', 'users', null,function(err, body) {
+                if (!err) {
+                    var users = [];
+                    if(body.rows.length > 0){
+                        body.rows.forEach(function(row){
+                            users.push(row.value);
+                        });
+                        console.log("returning: " + JSON.stringify(users));
+                        callback(null, users);
+                    }else{
+                        callback(null, null);
+                    }
+                }else{
+                    console.log(JSON.stringify(err));
+                    callback(err, null);
+                }
+            });
+        },
     };
 }();

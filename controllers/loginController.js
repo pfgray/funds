@@ -128,6 +128,17 @@ module.exports = function() {
 		});
 	};
 
+	app.isAdmin = function(req, res, next){
+		if(req.session && req.session.user && req.session.user.roles && req.session.user.roles.admin === true){
+			next();
+		} else {
+			res.status(403);
+			res.json({"error":"forbidden"});
+		}
+
+
+	}
+
 
 	return app;
 }();
