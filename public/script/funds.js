@@ -29,11 +29,13 @@ $(document).ready(function(){
 
 
 window.deleteTransaction  = function(accountId, transactionId, rev){
-	$.ajax({
-    	url: '/accounts/' + accountId + '/transactions/' + transactionId + '/rev/' + rev,
-    	type: 'DELETE',
-    	success: function(result) {
-			location.reload();
-    	}
-	});
+	if (window.confirm("Do you really want to delete this transaction?")) { 
+		$.ajax({
+	    	url: '/accounts/' + accountId + '/transactions/' + transactionId + '/rev/' + rev,
+	    	type: 'DELETE',
+	    	success: function(result) {
+				location.reload();
+	    	}
+		});
+	}
 }
