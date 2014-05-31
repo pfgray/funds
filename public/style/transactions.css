@@ -4,9 +4,6 @@ div.transaction{
     border-top:1px solid gray;
     overflow:hidden;
     zoom:1;
-
-
-
 }
 div.transaction:hover{
     background-color:#EEEEEE;

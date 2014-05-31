@@ -38,18 +38,8 @@ img.navbarIcon{
 img.sign{
     height:100%;
 }
-.signSpan{
-    display: block;
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    width: 100%;
-    padding-top: 0;
-    padding-bottom: 0;
-    overflow: hidden;
-    font-size: 0.875em;
-    height: 2.3125em;
-    line-height: 2.3125em;
+.signSpan a{
+    padding: 10.5px;
 }
 #text{
     height:100%;
