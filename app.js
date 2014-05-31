@@ -12,8 +12,8 @@ app.use(express.cookieParser());
 app.use(express.session({
     secret: '1234567890QWERTY',
     cookie: {
-        expires: new Date(Date.now() + 60 * 10000), 
-        maxAge: 60*10000
+        expires: new Date(Date.now() + 60 * 30000), // 30 minutes 
+        maxAge: 60*30000
     }
 }));
 
