@@ -13,11 +13,12 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['public/style/*.less'],
+      files: ['public/style/source/*.less'],
       tasks: ['less']
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
 };

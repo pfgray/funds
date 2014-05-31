@@ -6,32 +6,33 @@
     <link rel="stylesheet" href="/style/app.css"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 </head>
-<body>
-    <% include navbar %>
-    <div class="row">
-        <div class="small-12 large-offset-2 large-8 columns">
-            <h2>Welcome to Funds!</h2>
-            &nbsp;&nbsp;&nbsp;&nbsp;Funds is a mobile-friendly web application to help you keep track of your budget, and allow you to pinpoint where you spend most of your money! Track your spending from anywhere!
-        </div>
-    </div>
-    <div class="row">
-        <div class="small-12 large-offset-2 large-4 columns">
-            <div class="login_box">
-                <form method="POST">
-                    <input name="username" type="text" placeholder="username"/>
-                    <input name="password" type="password" placeholder="password"/>
-                    <div class="row">
-                        <div class="large-6 small-6 columns">
-                            <input class="button expand" type="submit" value="login" formaction="/login" />
-                        </div>
-                        <div class="large-6 small-6 columns">
-                            <input class="button expand success" type="submit" value="sign up" formaction="/setup_signup" />
-                        </div>
-                    </div>
-                </form>
+<body id="main">
+    <section class="main">
+        <div class="row">
+            <div class="small-12 large-offset-2 large-8 columns">
+                <h1>Funds</h1>
+                &nbsp;&nbsp;&nbsp;&nbsp;Funds is a mobile-friendly web application to help you keep track of your budget, and allow you to pinpoint where you spend most of your money! Track your spending from anywhere!
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="small-12 large-offset-2 large-4 columns">
+                <div class="login_box">
+                    <form method="POST">
+                        <input name="username" type="text" placeholder="username"/>
+                        <input name="password" type="password" placeholder="password"/>
+                        <div class="row">
+                            <div class="large-6 small-6 columns">
+                                <input class="button expand" type="submit" value="login" formaction="/login" />
+                            </div>
+                            <div class="large-6 small-6 columns">
+                                <input class="button expand success" type="submit" value="sign up" formaction="/setup_signup" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
