@@ -77,6 +77,8 @@
                     var transactions = new Array();
                     for(var i=0; i<body.rows.length; i+=2){
                         var transaction = {
+                            _id: body.rows[i].doc._id,
+                            _rev: body.rows[i].doc._rev,
                             tags: body.rows[i].doc.tags,
                             amount: body.rows[i].doc.amount,
                             timestamp:  body.rows[i].doc.timestamp,
@@ -91,8 +93,8 @@
                     callback(err);
                 }
             });
-       },
-       getTransactionPercentsForAcountForDate : function(account_id, date, callback){
+        },
+        getTransactionPercentsForAcountForDate : function(account_id, date, callback){
 
             //http://192.168.1.150:5984/funds/_design/money/_view/tag_percentage?startkey=["104011d9bac9fad553650b8eab0001a2",2013,9]&endkey=["104011d9bac9fad553650b8eab0001a2",2013,9,{}]&group=true
             
@@ -117,6 +119,9 @@
                     callback(err);
                 }
             });
-       }
+        },
+        deleteTransaction : function(transactionId, rev, callback){
+            db.destroy(transactionId, rev, callback);
+        }
    };
 }();

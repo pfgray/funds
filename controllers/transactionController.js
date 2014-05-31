@@ -61,5 +61,25 @@ module.exports = function() {
 	        });
 		});
 	};
+
+	app.delete = function(req, res, model){
+
+		console.log("****getting delete request from:", JSON.stringify(req.session.user));
+		console.log("****	for account: ", req.params.account);
+		console.log("****	for transaction: ", req.params.transaction);
+		console.log("****	with rev: ", req.params.rev);
+
+		transactionDao.deleteTransaction(req.params.transaction, req.params.rev, function(err, body){
+			if(err){
+				res.setStatus(400);
+				res.json(err);
+			} else {
+				res.json({success:true});
+			}
+		});
+
+
+		
+	}
 	return app;
 }();

@@ -46,6 +46,8 @@ app.post('/accounts', AuthenticatedRequest(accountsController.finalize));
 app.post('/setup_signup', loginController.setupSignup);
 app.post('/signup', loginController.signup);
 
+app.delete('/accounts/:account/transactions/:transaction/rev/:rev', AuthenticatedRequest(transactionController.delete));
+
 
 app.get('/users', loginController.isAdmin, userController.list);
 
