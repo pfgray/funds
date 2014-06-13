@@ -41,8 +41,15 @@ module.exports = function() {
 		if(isNaN(req.body.amount)){
 			res.send("Error");
 			return;
-		} 
-		req.body.tags = req.body.tags.split(" ");
+		}
+
+		var tag_list = req.body.tags.split(",");
+		req.body.tags = [];
+		tag_list.forEach(function(tag){
+			if(tag.trim() !== ''){
+				req.body.tags.push(tag);
+			}
+		});
 
 		req.body.timestamp = Date.now();
 		req.body.user = req.session.user._id;

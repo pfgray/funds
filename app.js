@@ -53,5 +53,7 @@ app.get('/users', loginController.isAdmin, userController.list);
 
 app.get('/', welcomeController.welcome);
 
-server.listen(config.web.port || 1337);
+var serverPort = config.web.port || 1337;
+server.listen(serverPort);
+console.log('server listening on: ' + serverPort);
 

@@ -28,11 +28,11 @@
         },
         addTransaction : function(transaction){
             db.insert(transaction, null, function(err, body, header) {
-              if (err) {
-                console.error('error inserting transaction');
-                return;
-            }
-        });
+                if (err) {
+                    console.error('error inserting transaction');
+                    return;
+                }
+            });
         },
         getTotalForMonth : function(account_id, callback){
             var now = new Date();
@@ -71,7 +71,6 @@
             });
         },
         getTransactionsForAcountForDate : function(account_id, date, callback){
-            console.log("getting transactions for date: " + date.getTime());
             db.view('money', 'transactions_user', {descending:true,startkey:[account_id, 8640000000000000],endkey:[account_id, date.getTime()],include_docs:true},function(err, body) {
                 if (!err) {
                     var transactions = new Array();
@@ -98,7 +97,6 @@
 
             //http://192.168.1.150:5984/funds/_design/money/_view/tag_percentage?startkey=["104011d9bac9fad553650b8eab0001a2",2013,9]&endkey=["104011d9bac9fad553650b8eab0001a2",2013,9,{}]&group=true
             
-            console.log("getting transactions for date: " + date.getTime());
             var startkey = [account_id, date.getFullYear(), date.getMonth()];
             var endkey = [account_id, date.getFullYear(), date.getMonth(), {}];
 
@@ -110,7 +108,6 @@
                             name:body.rows[i].key[3],
                             value:body.rows[i].value
                         }
-                        console.log('pushing tag: ' + JSON.stringify(tag));
                         tags.push(tag);
                     }
                     callback(null, tags);

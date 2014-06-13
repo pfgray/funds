@@ -67,7 +67,6 @@ module.exports = function() {
 		};
 		loginValidator.validate(loginUser, function(error, user){
 			if(!error){
-				console.log("authenticated correctly!" + JSON.stringify(user));
 				req.session.user = user;
 				res.redirect(303, '/accounts');
 			}else{
