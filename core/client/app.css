@@ -40,3 +40,17 @@
   font-size: 1.5em;
   margin-bottom: 1em;
 }
+.accounts .account {
+  border-top: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  margin-bottom: 1em;
+}
+.accounts .account:first-child {
+  margin-top: 2em;
+}
+.accounts .account:last-child {
+  margin-bottom: 2em;
+}
+.accounts .account .name {
+  font-size: 5em;
+}

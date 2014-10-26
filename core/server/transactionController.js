@@ -4,23 +4,22 @@ module.exports = function() {
     var app = {};
     var transactionDao = require('./daos/transactionDao');
 
-	app.list = function(req, res, model){
-		var date = new Date(new Date().getFullYear(), new Date().getMonth());
-		transactionDao.getTransactionsForAcountForDate(req.params.account,date, function(err, rows){
-			model.transactions = rows;
-			transactionDao.getTotalForMonth(req.params.account, function(total){
-				transactionDao.getTransactionPercentsForAcountForDate(req.params.account, new Date(), function(err, tags){
-					model.total = parseInt(total*100)/100;
-					model.username = req.session.username;
-					model.account = req.params.account;
-					model.tags = tags;
-					slate.render('transactions.ejs', model, function(data){
-			            res.send(data);
-			        });
-			    });
-			});
-		});
-	};
+  	app.list = function(req, res, model){
+    		var date = new Date(new Date().getFullYear(), new Date().getMonth());
+    		transactionDao.getTransactionsForAcountForDate(req.params.account,date, function(err, rows){
+      			model.transactions = rows;
+      			transactionDao.getTotalForMonth(req.params.account, function(total){
+      				  transactionDao.getTransactionPercentsForAcountForDate(req.params.account, new Date(), function(err, tags){
+          					model.total = parseInt(total*100)/100;
+          					model.username = req.session.username;
+          					model.account = req.params.account;
+          					model.tags = tags;
+                    res.json(model.transactions);
+      			    });
+      			});
+    		});
+  	};
+
 	app.viewAdd = function(req, res, model) {
 		model.username = req.session.username;
 		model.account = req.params.account;
@@ -55,7 +54,7 @@ module.exports = function() {
 		req.body.user = req.session.user._id;
 
 		transactionDao.addTransaction(req.body);
-		
+
 		res.redirect(303, '/accounts/'+req.body.account+'/transactions' );
 	};
 	app.viewTag = function(req, res, model){
@@ -86,7 +85,7 @@ module.exports = function() {
 		});
 
 
-		
+
 	}
 	return app;
 }();

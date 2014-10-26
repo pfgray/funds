@@ -11,8 +11,8 @@ app.use(express.cookieParser());
 app.use(express.session({
     secret: '1234567890QWERTY',
     cookie: {
-        expires: new Date(Date.now() + 60 * 30000), // 30 minutes
-        maxAge: 60*30000
+        expires: new Date(Date.now() + 60 * 1200000), // 120 minutes
+        maxAge: 60*1200000
     }
 }));
 
@@ -35,9 +35,9 @@ app.get('/', function(req, res){
 var loginController      = require('./core/server/loginController');
 var AuthenticatedRequest = require('./core/server/services/authenticatedRequest');
 var accountsController = require('./core/server/accountsController');
+var transactionController = require('./core/server/transactionController');
 
 /*
-var transactionController = require('./controllers/transactionController');
 var welcomeController = require('./controllers/welcomeController');
 var userController = require('./controllers/userController');
 */
@@ -50,9 +50,9 @@ app.post('/api/signup', loginController.signup);
 //accounts endpoints
 app.get('/api/accounts', AuthenticatedRequest(accountsController.list));
 app.post('/api/accounts', AuthenticatedRequest(accountsController.createAccount));
+app.get('/api/accounts/:account/transactions', AuthenticatedRequest(transactionController.list));
 
 /*
-app.get('/accounts/:account/transactions', AuthenticatedRequest(transactionController.list));
 app.post('/accounts/:account/transactions', AuthenticatedRequest(transactionController.add));
 app.get('/accounts/:account/transactions/add', AuthenticatedRequest(transactionController.viewAdd));
 

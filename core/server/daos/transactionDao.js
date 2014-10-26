@@ -1,9 +1,9 @@
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
  module.exports = function() {
-    var config = require('../../config');
+    var config = require('../../../config');
     var nano = require('nano')('http://'+config.couch.host+':'+config.couch.port);
     var db = nano.use('funds');
     var md5 = require('MD5');
@@ -12,7 +12,7 @@
         getTransactions : function(callback){
             var now = new Date();
             var endKey = new Date(now.getFullYear(), now.getMonth());
-            var startKey = new Date(endKey.getFullYear(), endKey.getMonth()+1); 
+            var startKey = new Date(endKey.getFullYear(), endKey.getMonth()+1);
             db.view('money', 'transactions', {descending:true,startkey:startKey.getTime(),endkey:endKey.getTime()},function(err, body) {
                 if (!err) {
                     var rows = new Array();
@@ -37,7 +37,7 @@
         getTotalForMonth : function(account_id, callback){
             var now = new Date();
             var key = [account_id, now.getFullYear(), now.getMonth()];
-            db.view('money', 'transaction_totals', {key:key}, function(err, body) { 
+            db.view('money', 'transaction_totals', {key:key}, function(err, body) {
                 if (!err) {
                     if(body.rows.length == 0){
                         callback(0);
@@ -96,7 +96,7 @@
         getTransactionPercentsForAcountForDate : function(account_id, date, callback){
 
             //http://192.168.1.150:5984/funds/_design/money/_view/tag_percentage?startkey=["104011d9bac9fad553650b8eab0001a2",2013,9]&endkey=["104011d9bac9fad553650b8eab0001a2",2013,9,{}]&group=true
-            
+
             var startkey = [account_id, date.getFullYear(), date.getMonth()];
             var endkey = [account_id, date.getFullYear(), date.getMonth(), {}];
 

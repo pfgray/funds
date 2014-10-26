@@ -20,5 +20,9 @@ funds.config(function($stateProvider, $urlRouterProvider) {
       .state('accounts', {
         url: "/accounts",
         templateUrl: "accounts-template.html"
+      })
+      .state('account', {
+        url: "/account/:accountId",
+        templateUrl: "transactions-template.html"
       });
 });
