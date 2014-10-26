@@ -13,6 +13,10 @@ funds.config(function($stateProvider, $urlRouterProvider) {
         url: "/login",
         templateUrl: "login-template.html"
       })
+      .state('signup', {
+        url: "/signup",
+        templateUrl: "signup-template.html"
+      })
       .state('accounts', {
         url: "/accounts",
         templateUrl: "accounts-template.html"

@@ -1,9 +1,9 @@
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
  module.exports = function() {
-    var config = require('../../config');
+    var config = require('../../../config');
     var nano = require('nano')('http://'+config.couch.host+':'+config.couch.port);
     var db = nano.use('funds');
 
@@ -11,7 +11,7 @@
         getUser : function(username, callback){
             db.view('money', 'users', {key:username},function(err, body) {
                 if (!err) {
-                    if(body.rows.length > 0){
+                    if(body.roews.length > 0){
                         callback(null, body.rows[0].value);
                     }else{
                         callback(null, null);
@@ -41,7 +41,7 @@
                     });
                     callback(rows);
                 }
-            });  
+            });
         },
         getAll : function(callback){
             db.view('money', 'users', null,function(err, body) {

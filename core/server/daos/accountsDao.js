@@ -1,9 +1,9 @@
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
  module.exports = function() {
-    var config = require('../../config');
+    var config = require('../../../config');
     var nano = require('nano')('http://'+config.couch.host+':'+config.couch.port);
     var db = nano.use('funds');
     var md5 = require('MD5');

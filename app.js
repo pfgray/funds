@@ -16,6 +16,10 @@ app.use(express.session({
     }
 }));
 
+app.configure(function(){
+    app.use(express.bodyParser());
+});
+
 var server = http.createServer(app);
 
 var path = require('path');
@@ -28,20 +32,21 @@ app.get('/', function(req, res){
     res.render(config.client_dir + '/index.html');
 });
 
+var loginController      = require('./core/server/loginController');
+var AuthenticatedRequest = require('./core/server/services/authenticatedRequest');
 /*
-app.use(express.bodyParser());
-
 var transactionController = require('./controllers/transactionController');
-var loginController = require('./controllers/loginController');
 var accountsController = require('./controllers/accountsController');
 var welcomeController = require('./controllers/welcomeController');
 var userController = require('./controllers/userController');
-var AuthenticatedRequest = require('./controllers/services/authenticatedRequest');
+*/
 
 //set up the login controllers:
-app.get('/login', loginController.loginForm);
-app.post('/login', loginController.login);
-app.get('/logout', AuthenticatedRequest(loginController.logout));
+app.post('/api/login', loginController.login);
+app.get('/api/logout', AuthenticatedRequest(loginController.logout));
+app.post('/api/signup', loginController.signup);
+
+/*
 
 app.get('/accounts', AuthenticatedRequest(accountsController.list));
 
@@ -52,7 +57,6 @@ app.post('/setup_account', AuthenticatedRequest(accountsController.setupAccount)
 app.post('/accounts', AuthenticatedRequest(accountsController.finalize));
 
 app.post('/setup_signup', loginController.setupSignup);
-app.post('/signup', loginController.signup);
 
 app.delete('/accounts/:account/transactions/:transaction/rev/:rev', AuthenticatedRequest(transactionController.delete));
 
