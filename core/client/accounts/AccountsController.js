@@ -1,5 +1,12 @@
-funds.controller('AccountsController', ['$scope', function($scope){
+funds.controller('AccountsController', ['$scope', '$http', function($scope, $http){
 
-    $scope.stuff = "yeay-yuh";
-    
+    $http.get('/api/accounts')
+    .success(function(data){
+        $scope.accounts = data;
+    })
+    .error(function(data){
+        console.error('error:', data);
+        $scope.accounts = [];
+    });
+
 }]);

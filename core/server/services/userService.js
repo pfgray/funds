@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -11,15 +11,15 @@
 		authenticatePassword : function(username, password, callback){
 		    console.log('about to authenticate user: ' + username);
 		    userDao.getUser(username, function(err, user){
-				if (err != null || user == null){
-				    callback(error, "username not found");
-				}else{
-				    if(JSON.stringify(SHA256(salt + username + password)) === JSON.stringify(user.password)){
-						callback(false, user);
-				    }else{
-						callback(true);
-				    }
-				}
+    				if (err != null || user == null){
+    				    callback(error, "username not found");
+    				} else {
+    				    if(JSON.stringify(SHA256(salt + username + password)) === JSON.stringify(user.password)){
+    						    callback(false, user);
+    				    } else {
+    						    callback(true);
+    				    }
+    				}
 		    });
 		},
 		createUser : function(username, password, email, callback){

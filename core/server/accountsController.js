@@ -34,21 +34,12 @@ module.exports = function() {
 								for(var i=1; i<rows.length; i++){
 										model.accounts.push(rows[i]);
 								}
-								res.json(model.aaccounts);
+								res.json(model.accounts);
 						});
 				});
 		};
 
-		app.setupAccount = function(req, res, model){
-				model.account = {
-					  name:req.body.name
-				};
-				slate.render('setup_account.ejs', model, function(data){
-						res.send(data);
-				});
-		};
-
-		app.finalize = function(req, res, model){
+		app.createAccount = function(req, res, model){
 				var account = {
 						name:req.body.name,
 						type:req.body.type,

@@ -34,9 +34,10 @@ app.get('/', function(req, res){
 
 var loginController      = require('./core/server/loginController');
 var AuthenticatedRequest = require('./core/server/services/authenticatedRequest');
+var accountsController = require('./core/server/accountsController');
+
 /*
 var transactionController = require('./controllers/transactionController');
-var accountsController = require('./controllers/accountsController');
 var welcomeController = require('./controllers/welcomeController');
 var userController = require('./controllers/userController');
 */
@@ -46,17 +47,14 @@ app.post('/api/login', loginController.login);
 app.get('/api/logout', AuthenticatedRequest(loginController.logout));
 app.post('/api/signup', loginController.signup);
 
+//accounts endpoints
+app.get('/api/accounts', AuthenticatedRequest(accountsController.list));
+app.post('/api/accounts', AuthenticatedRequest(accountsController.createAccount));
+
 /*
-
-app.get('/accounts', AuthenticatedRequest(accountsController.list));
-
 app.get('/accounts/:account/transactions', AuthenticatedRequest(transactionController.list));
 app.post('/accounts/:account/transactions', AuthenticatedRequest(transactionController.add));
 app.get('/accounts/:account/transactions/add', AuthenticatedRequest(transactionController.viewAdd));
-app.post('/setup_account', AuthenticatedRequest(accountsController.setupAccount));
-app.post('/accounts', AuthenticatedRequest(accountsController.finalize));
-
-app.post('/setup_signup', loginController.setupSignup);
 
 app.delete('/accounts/:account/transactions/:transaction/rev/:rev', AuthenticatedRequest(transactionController.delete));
 

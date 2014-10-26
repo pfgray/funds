@@ -11,7 +11,7 @@
         getUser : function(username, callback){
             db.view('money', 'users', {key:username},function(err, body) {
                 if (!err) {
-                    if(body.roews.length > 0){
+                    if(body.rows.length > 0){
                         callback(null, body.rows[0].value);
                     }else{
                         callback(null, null);
