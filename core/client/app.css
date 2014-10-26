@@ -1,0 +1,42 @@
+.title {
+  font-size: 5em;
+}
+.subtitle {
+  font-size: 1.4em;
+}
+.funds-navbar {
+  border-radius: 0px;
+  background-color: black;
+}
+.funds-navbar .navbar-brand {
+  color: #43AC6A;
+}
+.login {
+  background-image: url('/images/ruler_dark.png');
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  color: white;
+}
+.login p {
+  margin-bottom: 1em;
+}
+.login input {
+  font-size: 1.5em;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 0;
+  border-color: white;
+  padding: 1em 0.5em;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+.login input:focus {
+  border: 1px solid #BBB;
+  box-shadow: none;
+}
+.login button {
+  border-radius: 0;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}

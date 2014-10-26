@@ -3,7 +3,6 @@ var exec = require('child_process').exec;
 
 var config = require('./config');
 
-
 //webapp
 var express = require('express');
 var http = require('http');
@@ -12,7 +11,7 @@ app.use(express.cookieParser());
 app.use(express.session({
     secret: '1234567890QWERTY',
     cookie: {
-        expires: new Date(Date.now() + 60 * 30000), // 30 minutes 
+        expires: new Date(Date.now() + 60 * 30000), // 30 minutes
         maxAge: 60*30000
     }
 }));
@@ -21,6 +20,15 @@ var server = http.createServer(app);
 
 var path = require('path');
 app.use(express.static(path.join(__dirname, 'public'), {maxAge: 86400000}));
+app.use(express.static(path.join(__dirname, 'core/client'), {maxAge: 86400000}));
+
+//app.set('views', __dirname + 'core/client');
+app.engine('html', require('ejs').renderFile);
+app.get('/', function(req, res){
+    res.render(config.client_dir + '/index.html');
+});
+
+/*
 app.use(express.bodyParser());
 
 var transactionController = require('./controllers/transactionController');
@@ -52,8 +60,8 @@ app.delete('/accounts/:account/transactions/:transaction/rev/:rev', Authenticate
 app.get('/users', loginController.isAdmin, userController.list);
 
 app.get('/', welcomeController.welcome);
+*/
 
 var serverPort = config.web.port || 1337;
 server.listen(serverPort);
 console.log('server listening on: ' + serverPort);
-
